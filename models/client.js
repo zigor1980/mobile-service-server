@@ -35,9 +35,9 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Client.associate = (models) => {
-        Client.belongsTo(
+        Client.hasMany(
             models.Phone,
-            { foreignKey: 'client_id', targetKey: 'id' },
+            { foreignKey: 'client_id', sourceKey: 'id' },
         );
     };
 

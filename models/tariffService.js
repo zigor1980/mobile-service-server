@@ -20,13 +20,13 @@ module.exports = (sequelize, DataTypes) => {
     TariffService.associate = (models) => {
         TariffService.belongsTo(
             models.Tariff,
-            { foreignKey: 'service_id', sourceKey: 'id' },
+            { foreignKey: 'tariff_id', sourceKey: 'id' },
         );
         TariffService.belongsTo(
             models.Service,
-            { foreignKey: 'tariff_id', sourceKey: 'id' },
+            { foreignKey: 'service_id', sourceKey: 'id' },
         );
     };
-
+    
     return TariffService;
 };

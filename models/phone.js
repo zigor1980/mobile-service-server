@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         balans: {
             type: DataTypes.INTEGER,
-            allowNull: false,   
+            allowNull: false,
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -47,18 +47,21 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Phone.associate = (models) => {
-        Phone.hasMany(models.Model, {
-            foreignKey: 'model_id', sourceKey: 'id',
-        });
-        Phone.hasMany(models.Tariff, {
-            foreignKey: 'tariff_id', sourceKey: 'id',
-        });
-        Phone.hasMany(models.Client, {
-            foreignKey: 'client_id', sourceKey: 'id',
-        });
         Phone.belongsTo(
+            models.Tariff,
+            { foreignKey: 'tariff_id', sourceKey: 'id' },
+        );
+        Phone.belongsTo(
+            models.Model,
+            { foreignKey: 'model_id', sourceKey: 'id' },
+        );
+        Phone.belongsTo(
+            models.Client,
+            { foreignKey: 'client_id', sourceKey: 'id' },
+        );
+        Phone.hasMany(
             models.Pay,
-            { foreignKey: 'phone_id', targetKey: 'id' },
+            { foreignKey: 'phone_id', sourceKey: 'id' },
         );
     };
 

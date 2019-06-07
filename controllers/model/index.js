@@ -1,70 +1,68 @@
 const { sequelize } = require('../../models');
 const uuid = require('uuid/v4');
-const { Service } = sequelize.models;
+const { Model } = sequelize.models;
 
 module.exports = {
-    createService: async (req, res) => {
+    createModel: async (req, res) => {
         try {
             const { body } = req;
-            const service = await Service.create({
+            const instance = await Model.create({
                 id: uuid(),
                 ...body,
             }, {
                 returning: true,
             });
 
-            res.send(service);
+            res.send(instance);
         } catch(error) {
             console.log(error);
             res.status(404).send();
         }
     },
-    getServices: async (req, res) => {
+    getModels: async (req, res) => {
         try {
-            const services = await Service.findAll({
+            const instances = await Model.findAll({
                 order: [
                     ['updatedAt', 'DESC'],
                 ],
             });
-            res.send(services);
+            res.send(instances);
         } catch(error) {
             res.status(404).send();
         }
     },
-    getService: async (req, res) => {
+    getModel: async (req, res) => {
         try {
             const { params: {id} } = req;
-            const services = await Service.findOne({
+            const instance = await Model.findOne({
                 where: {
                     id,
                 },
                 returning: true,
             });
-            res.send(services);
+            res.send(instance);
         } catch(error) {
-            console.log(error);
             res.status(404).send;
         }
     },
-    updateService: async (req, res) => {
+    updateModel: async (req, res) => {
         try {
             const { params: {id}, body } = req;
-            console.log(id, body);
-            const service = await Service.update( body, {
+            const instance = await Model.update( body, {
                 where: {
                     id,
                 },
                 returning: true,
             });
-            res.send(service);
+            res.send(instance);
         } catch(error) {
             res.status(404).send;
         }
     },
-    removeService: async (req, res) => {
+    removeModel: async (req, res) => {
         try {
             const { params: {id} } = req;
-            await Service.destroy({
+            await Model.destroy({
                 where: {
                     id,
                 }

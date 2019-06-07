@@ -15,17 +15,26 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+        },
     }, {
         underscore: true,
         tableName: 'pay',
         modelName: 'pay',
-        timestamps: false,
+        timestamps: true,
     });
 
     Pay.associate = (models) => {
-        Pay.hasMany(models.Phone, {
-            foreignKey: 'phone_id', sourceKey: 'id',
-        });
+        Pay.belongsTo(
+            models.Phone,
+            { foreignKey: 'phone_id', sourceKey: 'id' },
+        );
     };
 
     Pay.beforeCreate(instance => instance.id = uuid());

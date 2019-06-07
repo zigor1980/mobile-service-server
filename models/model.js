@@ -31,9 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Model.associate = (models) => {
-        Model.belongsTo(
+        Model.hasMany(
             models.Phone,
-            { foreignKey: 'model_id', targetKey: 'id' },
+            { foreignKey: 'model_id', sourceKey: 'id' },
         );
     };
 

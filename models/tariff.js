@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Tariff.associate = (models) => {
+        Tariff.hasMany(models.Phone,{ foreignKey: 'tariff_id', sourceKey: 'id'})
         Tariff.belongsToMany(
             models.Service,
             { through: models.TariffService, foreignKey: 'tariff_id' },

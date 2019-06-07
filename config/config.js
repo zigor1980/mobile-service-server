@@ -5,6 +5,7 @@ module.exports = {
     "database": "dbue1hskhqld11",
     "host": "ec2-54-217-225-16.eu-west-1.compute.amazonaws.com",
     "dialect": "postgres",
+    "logging": false,
     "dialectOptions": {
       "ssl": true
     }
@@ -15,6 +16,7 @@ module.exports = {
     "database": "dbue1hskhqld11",
     "host": "ec2-54-217-225-16.eu-west-1.compute.amazonaws.com",
     "dialect": "postgres",
+    "logging": false,
     "dialectOptions": {
       "ssl": true
     }
@@ -25,6 +27,7 @@ module.exports = {
     "database": "dbue1hskhqld11",
     "host": "ec2-54-217-225-16.eu-west-1.compute.amazonaws.com",
     "dialect": "postgres",
+    "logging": false,
     "dialectOptions": {
       "ssl": true
     }
